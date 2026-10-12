@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oak & Orbit — Everyday goods</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="ann">Free shipping over $50. Use code WELCOME10 for 10% off your order.</div>
+<header><div class="bar">
+  <button class="logo" data-go="home">Oak<i>&</i>Orbit</button><input id="q" class="hs" type="search" placeholder="Search for products, categories and more" aria-label="Search products"><span class="sp"></span>
+  <button class="nav-btn hide" id="dash"></button>
+  <button class="nav-btn" id="acct" data-go="login">Sign in</button>
+  <button class="nav-btn" data-oo="wish" aria-label="Saved items">♥ <span id="wc">0</span></button>
+  <button class="nav-btn" data-oo="openCart" aria-label="Open cart">Cart (<span id="cc">0</span>)</button>
+</div><nav class="cats" id="catnav" aria-label="Categories"></nav></header>
+
+<main>
+<section id="v-home">
+  <div class="hero panel">
+    <div>
+      <h1>Good things for the way you live.</h1>
+      <p>Home, tech and style essentials, picked for quality and delivered fast. Free shipping on orders over $50.</p>
+      <button class="btn alt" data-oo="shopScroll">Shop the collection</button>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div style="background:#f2b134">🎧</div><div style="background:#bfd8c6">🪴</div>
+      <div style="background:#e6d3c1">👟</div><div style="background:#16402e">☕</div>
+    </div>
+  </div>
+  <div class="tools"><select id="sort" aria-label="Sort products"><option value="">Featured</option><option value="a">Price: low to high</option><option value="d">Price: high to low</option><option value="r">Top rated</option></select></div><div id="shop" class="filters"></div>
+  <div class="grid" id="grid"></div>
+  <div class="promo"><div><h2>Your first order is 10% off</h2><p>Create an account and use code WELCOME10 at checkout.</p></div><button class="btn alt" data-go="register">Create account</button></div>
+  <div class="perks">
+    <div><h3>Free shipping</h3><p>On every order over $50.</p></div>
+    <div><h3>30-day returns</h3><p>Not right? Send it back, no questions.</p></div>
+    <div><h3>Secure checkout</h3><p>Your payment details stay protected.</p></div>
+  </div>
+</section>
+
+<section id="v-login" class="hide"><form class="auth" id="f-login" novalidate>
+  <h2>Welcome back</h2><p>Sign in to see your orders and saved items.</p>
+  <label for="l-e">Email</label><input id="l-e" type="email" autocomplete="email">
+  <label for="l-p">Password</label><div class="pw"><input id="l-p" type="password" autocomplete="current-password"><button type="button" data-t="l-p">Show</button></div>
+  <div class="msg" id="m-login" role="alert"></div>
+  <button class="btn full">Sign in</button>
+  <div class="links"><button type="button" class="lk" data-go="forgot">Forgot password?</button><span>New here? <button type="button" class="lk" data-go="register">Create account</button></span></div>
+</form></section>
+
+<section id="v-register" class="hide"><form class="auth" id="f-reg" novalidate>
+  <h2>Create your account</h2><p>It takes less than a minute.</p>
+  <label for="r-n">Full name</label><input id="r-n" autocomplete="name">
+  <label for="r-e">Email</label><input id="r-e" type="email" autocomplete="email">
+  <label for="r-p">Password</label><div class="pw"><input id="r-p" type="password" autocomplete="new-password" placeholder="At least 8 characters"><button type="button" data-t="r-p">Show</button></div>
+  <label for="r-c">Confirm password</label><input id="r-c" type="password" autocomplete="new-password">
+  <label>I want to</label>
+  <div class="roles"><label class="role"><input type="radio" name="r-role" value="buyer" checked><b>Buy</b><small>Shop products and write reviews</small></label><label class="role"><input type="radio" name="r-role" value="seller"><b>Sell</b><small>List products and run my own store</small></label></div>
+  <div id="r-shopw" class="hide"><label for="r-s">Store name</label><input id="r-s" maxlength="40" placeholder="e.g. Nile Crafts"></div>
+  <div class="msg" id="m-reg" role="alert"></div>
+  <button class="btn full">Create account</button>
+  <div class="links"><span>Already registered? <button type="button" class="lk" data-go="login">Sign in</button></span></div>
+</form></section>
+
+<section id="v-forgot" class="hide">
+  <form class="auth" id="f-forgot" novalidate>
+    <h2>Reset your password</h2><p>Enter your email and we'll send you a 6-digit code.</p>
+    <label for="f-e">Email</label><input id="f-e" type="email" autocomplete="email">
+    <div class="msg" id="m-forgot" role="alert"></div>
+    <button class="btn full">Send reset code</button>
+    <div class="links"><button type="button" class="lk" data-go="login">Back to sign in</button></div>
+  </form>
+  <form class="auth hide" id="f-reset" novalidate>
+    <h2>Enter your code</h2><p id="reset-info"></p>
+    <label for="x-c">6-digit code</label><input id="x-c" inputmode="numeric" maxlength="6">
+    <label for="x-p">New password</label><input id="x-p" type="password" autocomplete="new-password" placeholder="At least 8 characters">
+    <div class="msg" id="m-reset" role="alert"></div>
+    <button class="btn full">Update password</button>
+  </form>
+</section>
+<section id="v-checkout" class="hide"><div class="co wide"><form class="box" id="f-co" novalidate><h2>Checkout</h2><label for="c-n">Full name</label><input id="c-n" autocomplete="name"><label for="c-a">Address</label><input id="c-a" autocomplete="street-address"><div class="two"><div><label for="c-c">City</label><input id="c-c"></div><div><label for="c-z">Postal code</label><input id="c-z"></div></div><label for="c-s">Delivery</label><select id="c-s"><option value="s">Standard, 3-5 days (free over $50)</option><option value="x">Express, 1-2 days ($15)</option></select><label for="c-k">Card number</label><input id="c-k" inputmode="numeric" autocomplete="cc-number" placeholder="4242 4242 4242 4242"><div class="two"><div><label for="c-x">Expiry</label><input id="c-x" placeholder="MM/YY"></div><div><label for="c-v">CVC</label><input id="c-v" inputmode="numeric" maxlength="4"></div></div><div class="msg" id="m-co" role="alert"></div><button class="btn full">Place order</button></form><div class="box"><h3 style="margin-bottom:12px">Order summary</h3><div id="co-sum"></div><label for="c-p">Promo code</label><div style="display:flex;gap:8px"><input id="c-p" placeholder="WELCOME10"><button type="button" class="nav-btn" data-oo="applyPromo">Apply</button></div></div></div></section>
+<section id="v-product" class="hide"><div id="pp"></div></section>
+<section id="v-done" class="hide"><div class="auth" style="text-align:center"><h2>Order confirmed</h2><p>Thanks for shopping with us. Your order number is <b id="done-id"></b>.</p><button class="btn full" data-go="home">Continue shopping</button><div class="links" style="justify-content:center"><button class="lk" data-go="account">View your orders</button></div></div></section>
+<section id="v-account" class="hide"><div class="auth" style="max-width:640px"><h2 id="acc-h">Your account</h2><div id="acc-b"></div></div></section>
+<section id="v-seller" class="hide"><div class="wide"><h2 id="sl-h">My store</h2><div class="stats" id="sl-stats"></div>
+<div class="co"><form class="box" id="f-prod" novalidate><h3 id="pf-h">Add a product</h3><input type="hidden" id="pf-id">
+<label for="pf-n">Product name</label><input id="pf-n" maxlength="80">
+<div class="two"><div><label for="pf-c">Category</label><select id="pf-c"></select></div><div><label for="pf-p">Price ($)</label><input id="pf-p" type="number" min="0.5" step="0.01"></div></div>
+<div class="two"><div><label for="pf-o">Old price (optional)</label><input id="pf-o" type="number" min="0" step="0.01"></div><div><label for="pf-k">Stock</label><input id="pf-k" type="number" min="0" step="1" value="10"></div></div>
+<label for="pf-d">Description</label><textarea id="pf-d" rows="4" maxlength="600"></textarea>
+<label for="pf-i">Photos (up to 5)</label><input id="pf-i" type="file" accept="image/*" multiple><div class="prev" id="pf-prev"></div>
+<div class="msg" id="m-prod" role="alert"></div><button class="btn full">Save product</button><button type="button" class="nav-btn hide" id="pf-cancel" style="margin-top:10px">Cancel edit</button></form>
+<div class="box"><h3 style="margin-bottom:10px">My products</h3><div id="sl-list"></div><h3 style="margin:22px 0 10px">Recent sales</h3><div id="sl-sales"></div></div></div></div></section>
+</main>
+
+<footer><div class="fg"><div><b style="font-size:20px;color:#fff">Oak&amp;Orbit</b><p>Quality everyday goods with fast delivery and easy returns.</p><div class="pay"><span>Visa</span><span>Mastercard</span><span>Cash on delivery</span></div></div><div><h4>Shop</h4><button data-c="Tech">Tech</button><button data-c="Home">Home</button><button data-c="Style">Style</button><button data-c="Beauty">Beauty</button></div><div><h4>More</h4><button data-c="Sports">Sports</button><button data-c="Kitchen">Kitchen</button><button data-go="login">Sign in</button><button data-go="register">Create account</button><button data-oo="sell">Sell with us</button><button data-oo="admin">Admin</button></div><div><h4>Customer care</h4><p>support@oakorbit.com</p><p>Sat to Thu, 9am to 6pm</p><p>Free delivery over $50</p><p>30-day easy returns</p></div></div><div class="fine">© 2026 Oak&amp;Orbit. Demo store, no real payments or emails are sent.</div></footer>
+
+<dialog id="cartDlg"><div class="drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center"><h2>Your cart</h2><button class="nav-btn" data-oo="closeCart">Close</button></div>
+  <div class="list" id="cl"></div>
+  <div class="tot"><span>Total</span><span id="ct">$0.00</span></div>
+  <button class="btn full" data-oo="checkout">Checkout</button>
+</div></dialog>
+<dialog id="pDlg" class="modal"><div class="pd" id="pBody"></div></dialog>
+<dialog id="lb" class="modal lb"><img id="lb-img" alt="Photo preview"></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<div id="admin-root" class="hide"></div>
+<script src="js/api.js"></script>
+<script src="js/events.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

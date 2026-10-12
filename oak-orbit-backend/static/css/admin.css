@@ -1,0 +1,186 @@
+/* Admin console, styled to match the storefront (violet + coral, rounded, soft shadows).
+   Everything is scoped under #admin-root so it never clashes with the store styles. */
+#admin-root{--a-bg:#f7f5ff;--a-card:#fff;--a-ink:#17142f;--a-mut:#6a6788;--a-line:#e4e0f7;--a-brand:#5b3df5;--a-acc:#ff5d8f;--a-ok:#0a7d3b;--a-warn:#9a5b00;--a-bad:#c62840;--a-info:#2457c5;--a-grad:linear-gradient(135deg,var(--a-brand),#9b6bff);
+  font:15px/1.55 'DM Sans',system-ui,sans-serif;color:var(--a-ink);min-height:100%;
+  background:radial-gradient(900px 420px at 92% -60px,rgba(91,61,245,.16),transparent),radial-gradient(700px 400px at -10% 30%,rgba(255,93,143,.10),transparent),var(--a-bg)}
+@media (prefers-color-scheme:dark){#admin-root{--a-bg:#100e22;--a-card:#1a1735;--a-ink:#f1eeff;--a-mut:#a9a5cc;--a-line:#2b2850;--a-brand:#8b72ff;--a-ok:#4ade80;--a-warn:#fbbf24;--a-bad:#ff8a9b;--a-info:#8fb2ff}}
+#admin-root:not([data-mode]){position:fixed;inset:0;z-index:60;overflow:auto}
+#admin-root.hide,#admin-root .hide{display:none!important}
+#admin-root *{box-sizing:border-box}
+#admin-root h1,#admin-root h2,#admin-root h3,#admin-root h4{font-family:'Bricolage Grotesque','DM Sans',sans-serif;margin:0;line-height:1.15;color:var(--a-ink);letter-spacing:-.01em}
+#admin-root p{margin:0 0 8px}
+#admin-root small{display:block;color:var(--a-mut);font-size:12.5px}
+#admin-root button{font:inherit;cursor:pointer}
+#admin-root :focus-visible{outline:3px solid #ffb703;outline-offset:2px}
+
+/* ---------- layout ---------- */
+#admin-root .adm{display:grid;grid-template-columns:256px 1fr;min-height:100vh}
+#admin-root .adm-side{position:sticky;top:0;height:100vh;align-self:start;display:flex;flex-direction:column;gap:18px;padding:22px 14px;color:#dcd6ff;
+  background:radial-gradient(circle at 100% 0,rgba(255,93,143,.45),transparent 45%),radial-gradient(circle at 0 100%,rgba(124,92,255,.6),transparent 55%),linear-gradient(170deg,#1b1260,#3a24c4)}
+#admin-root .adm-brand{font:800 25px 'Bricolage Grotesque',sans-serif;color:#fff;padding:0 10px;letter-spacing:-.02em}
+#admin-root .adm-brand i{color:#ff5d8f;font-style:normal}
+#admin-root .adm-brand small{display:inline-block;margin-left:8px;background:#ff5d8f;color:#17142f;border-radius:999px;padding:1px 9px;font:700 11px 'DM Sans',sans-serif;vertical-align:middle}
+#admin-root .adm-brand.dark{color:var(--a-ink);padding:0}
+#admin-root .adm-side nav{display:flex;flex-direction:column;gap:3px;flex:1;overflow:auto}
+#admin-root .adm-side nav button{display:flex;align-items:center;gap:12px;background:none;border:0;color:#dcd6ff;padding:11px 14px;border-radius:14px;text-align:left;font-weight:500;transition:background .15s}
+#admin-root .adm-side nav button span{width:22px;height:22px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:13px}
+#admin-root .adm-side nav button:hover{background:rgba(255,255,255,.1)}
+#admin-root .adm-side nav button.on{background:#fff;color:#3a24c4;font-weight:700;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+#admin-root .adm-side nav button.on span{background:var(--a-grad);color:#fff}
+#admin-root .adm-side nav em{margin-left:auto;background:#ff5d8f;color:#17142f;border-radius:999px;font-style:normal;font-weight:700;font-size:12px;padding:0 8px}
+#admin-root .adm-me{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:2px}
+#admin-root .adm-me b{color:#fff}#admin-root .adm-me small{color:#c9c2f5}
+#admin-root .adm-me button{margin-top:8px;background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:999px;padding:7px 12px}
+#admin-root .adm-me button:hover{background:rgba(255,255,255,.26)}
+#admin-root .adm-main{min-width:0}
+#admin-root .adm-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:26px 32px 8px}
+#admin-root .adm-top h1{font-size:34px;font-weight:800}
+#admin-root .adm-body{padding:14px 32px 56px;display:flex;flex-direction:column;gap:20px}
+
+/* ---------- welcome banner ---------- */
+#admin-root .a-hero{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center;color:#fff;border-radius:30px;padding:30px 34px;
+  background:radial-gradient(circle at 88% 10%,rgba(255,93,143,.55),transparent 45%),radial-gradient(circle at 0 100%,rgba(124,92,255,.7),transparent 50%),linear-gradient(135deg,#1b1260,#4a2fd6);box-shadow:0 26px 60px rgba(91,61,245,.28)}
+#admin-root .a-hero small{color:#d9d1ff}
+#admin-root .a-hero h2{color:#fff;font-size:clamp(28px,4vw,42px);font-weight:800;margin:2px 0 8px}
+#admin-root .a-hero p{color:#e4dcff;max-width:52ch;font-size:16px}
+#admin-root .a-ha{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+#admin-root .a-stack{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:230px;justify-self:end}
+#admin-root .a-stack i{aspect-ratio:1;border-radius:22px;display:grid;place-items:center;font-size:40px;font-style:normal;box-shadow:0 16px 34px rgba(0,0,0,.3)}
+#admin-root .a-stack i:nth-child(1){background:#ff5d8f;transform:rotate(-5deg)}
+#admin-root .a-stack i:nth-child(2){background:#ffd54a;transform:translateY(16px) rotate(4deg)}
+#admin-root .a-stack i:nth-child(3){background:#7ee0c3;transform:rotate(3deg)}
+#admin-root .a-stack i:nth-child(4){background:#7c5cff;transform:translateY(-6px) rotate(-4deg)}
+
+/* ---------- cards, KPIs ---------- */
+#admin-root .a-card,#admin-root .a-kpi,#admin-root .a-tw{background:var(--a-card);border:1px solid var(--a-line);border-radius:22px;box-shadow:0 2px 0 var(--a-line)}
+#admin-root .a-card{padding:20px;min-width:0}
+#admin-root .a-card h3{font-size:18px;margin-bottom:14px}
+#admin-root .a-g2{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+#admin-root .a-g2:nth-of-type(n+2){grid-template-columns:1fr 1fr}
+#admin-root .a-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+#admin-root .a-kpi{position:relative;padding:18px 18px 16px 76px;min-height:92px;transition:transform .2s,box-shadow .2s}
+#admin-root .a-kpi:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(91,61,245,.2)}
+#admin-root .a-kpi::before{content:'$';position:absolute;left:16px;top:18px;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff;font:800 20px 'Bricolage Grotesque',sans-serif;background:var(--a-grad)}
+#admin-root .a-kpi:nth-child(2)::before{content:'☰';background:linear-gradient(135deg,#ff5d8f,#ff8fb1)}
+#admin-root .a-kpi:nth-child(3)::before{content:'∅';background:linear-gradient(135deg,#f59e0b,#ffc94d)}
+#admin-root .a-kpi:nth-child(4)::before{content:'☺';background:linear-gradient(135deg,#10b981,#6ee7b7)}
+#admin-root .a-kpi:nth-child(5)::before{content:'◫';background:linear-gradient(135deg,#3b82f6,#7fb2ff)}
+#admin-root .a-kpi:nth-child(6)::before{content:'★';background:linear-gradient(135deg,#7c5cff,#c4b5ff)}
+#admin-root .a-kpi span{color:var(--a-mut);font-size:13.5px}
+#admin-root .a-kpi b{display:block;font:800 30px 'Bricolage Grotesque',sans-serif;line-height:1.1;margin:2px 0}
+#admin-root .a-note{background:color-mix(in srgb,var(--a-brand) 10%,var(--a-card));border:1px solid color-mix(in srgb,var(--a-brand) 28%,transparent);border-radius:16px;padding:14px 16px}
+#admin-root .a-mut{color:var(--a-mut)}
+#admin-root .a-gold{color:#e0a100;white-space:nowrap}
+#admin-root .a-sp{flex:1}
+#admin-root .a-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- inputs and buttons ---------- */
+#admin-root .a-in,#admin-root input.a-in,#admin-root select.a-in,#admin-root textarea.a-in{width:auto;padding:10px 14px;border:1px solid var(--a-line);border-radius:12px;background:var(--a-card);color:var(--a-ink);font:inherit;margin:0}
+#admin-root .a-in:focus{border-color:var(--a-brand)}
+#admin-root .a-search{min-width:260px;border-radius:999px;padding-left:18px}
+#admin-root .a-btn{display:inline-block;background:var(--a-card);color:var(--a-ink);border:1px solid var(--a-line);border-radius:999px;padding:9px 16px;font-weight:500;text-decoration:none;line-height:1.2;transition:border-color .15s,filter .15s}
+#admin-root .a-btn:hover{border-color:var(--a-brand)}
+#admin-root .a-btn.pri{background:var(--a-grad);border-color:transparent;color:#fff;font-weight:700;border-radius:14px}
+#admin-root .a-btn.pri:hover{filter:brightness(1.1)}
+#admin-root .a-btn.pri2{background:#ff5d8f;border-color:#ff5d8f;color:#17142f;font-weight:700;border-radius:14px}
+#admin-root .a-btn.pri2:hover{filter:brightness(1.08)}
+#admin-root .a-btn.ghostw{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.32);color:#fff}
+#admin-root .a-btn.ghostw:hover{background:rgba(255,255,255,.24)}
+#admin-root .a-btn.danger{color:var(--a-bad)}
+#admin-root .a-btn.danger:hover{border-color:var(--a-bad)}
+#admin-root .a-btn.sm{padding:5px 12px;font-size:13px}
+#admin-root .a-btn.full{width:100%;text-align:center;border-radius:14px;padding:12px}
+#admin-root .a-err{color:var(--a-bad);font-size:13px;min-height:18px}
+#admin-root .a-badge{display:inline-block;background:color-mix(in srgb,var(--a-ink) 9%,transparent);color:var(--a-ink);border-radius:999px;padding:2px 11px;font-size:12px;font-weight:700;text-transform:capitalize;white-space:nowrap}
+#admin-root .a-badge.ok{background:color-mix(in srgb,var(--a-ok) 16%,transparent);color:var(--a-ok)}
+#admin-root .a-badge.warn{background:color-mix(in srgb,var(--a-warn) 18%,transparent);color:var(--a-warn)}
+#admin-root .a-badge.bad{background:color-mix(in srgb,var(--a-bad) 16%,transparent);color:var(--a-bad)}
+#admin-root .a-badge.info{background:color-mix(in srgb,var(--a-info) 16%,transparent);color:var(--a-info)}
+
+/* ---------- tables ---------- */
+#admin-root .a-tw{overflow-x:auto}
+#admin-root .a-t{width:100%;border-collapse:collapse;font-size:14.5px}
+#admin-root .a-t th{text-align:left;color:var(--a-mut);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:14px 16px;background:color-mix(in srgb,var(--a-brand) 7%,transparent);border-bottom:1px solid var(--a-line);white-space:nowrap}
+#admin-root .a-t td{padding:12px 16px;border-bottom:1px solid var(--a-line);vertical-align:middle}
+#admin-root .a-t tr:last-child td{border-bottom:0}
+#admin-root .a-t tbody tr{transition:background .12s}
+#admin-root .a-t tbody tr:hover{background:color-mix(in srgb,var(--a-brand) 6%,transparent)}
+#admin-root .a-r{text-align:right;white-space:nowrap}
+#admin-root .a-empty{text-align:center;color:var(--a-mut);padding:34px 14px!important}
+#admin-root .a-th{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:25px;overflow:hidden}
+#admin-root .a-th img{width:100%;height:100%;object-fit:cover}
+#admin-root .a-mini{width:34px;height:34px;object-fit:cover;border-radius:9px;margin-right:4px;vertical-align:middle}
+#admin-root .a-who{display:flex;gap:12px;align-items:center}
+#admin-root .a-who i{width:38px;height:38px;border-radius:50%;background:var(--a-grad);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700}
+
+/* ---------- charts and lists ---------- */
+#admin-root .a-chart{width:100%;height:auto}
+#admin-root .a-gl{stroke:var(--a-line);stroke-width:1}
+#admin-root .a-ax{fill:var(--a-mut);font-size:10px}
+#admin-root rect.a-rect{fill:url(#adm-bg)}
+#admin-root rect.a-rect:hover{opacity:.8}
+#admin-root .a-dw{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+#admin-root .a-donut{width:158px;height:158px}
+#admin-root .a-donut circle:first-child{stroke:var(--a-line)}
+#admin-root .a-dn{font:800 28px 'Bricolage Grotesque',sans-serif;fill:var(--a-ink)}
+#admin-root .a-lg,#admin-root .a-tp,#admin-root .a-hb{list-style:none;margin:0;padding:0}
+#admin-root .a-lg{flex:1;min-width:140px}
+#admin-root .a-lg li{display:flex;align-items:center;gap:9px;padding:4px 0}
+#admin-root .a-lg i{width:11px;height:11px;border-radius:4px}
+#admin-root .a-lg b{margin-left:auto;padding-left:18px}
+#admin-root .a-tp li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--a-line)}
+#admin-root .a-tp li:last-child{border-bottom:0}
+#admin-root .a-tp li>span{flex:1;min-width:0}
+#admin-root .a-hb li{display:grid;grid-template-columns:84px 1fr 84px;gap:12px;align-items:center;padding:7px 0}
+#admin-root .a-hb div{background:var(--a-line);border-radius:999px;height:11px}
+#admin-root .a-hb i{display:block;height:100%;background:linear-gradient(90deg,#5b3df5,#ff5d8f);border-radius:999px}
+#admin-root .a-hb b{text-align:right}
+#admin-root .a-meter{background:var(--a-line);border-radius:999px;height:9px;margin:8px 0 14px}
+#admin-root .a-meter i{display:block;height:100%;background:linear-gradient(90deg,#5b3df5,#ff5d8f);border-radius:999px}
+
+/* ---------- forms and modal ---------- */
+#admin-root .a-fg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#admin-root .a-fg .wide{grid-column:1/-1}
+#admin-root .a-l{display:block;font-weight:500;font-size:13.5px;margin:0}
+#admin-root .a-l .a-in{display:block;width:100%;margin-top:6px}
+#admin-root textarea.a-in{resize:vertical}
+#admin-root .a-code{width:100%;font:12px/1.45 ui-monospace,Menlo,monospace;margin:8px 0}
+#admin-root .adm-modal{position:fixed;inset:0;background:rgba(23,20,47,.55);backdrop-filter:blur(4px);z-index:70;display:grid;place-items:start center;overflow:auto;padding:5vh 16px}
+#admin-root .a-mb{background:var(--a-card);color:var(--a-ink);border:1px solid var(--a-line);border-radius:26px;padding:26px;width:min(700px,100%);display:flex;flex-direction:column;gap:16px;box-shadow:0 40px 90px rgba(0,0,0,.35)}
+#admin-root .a-mh{display:flex;justify-content:space-between;align-items:center}
+#admin-root .a-mh h3{font-size:22px}
+#admin-root .a-x{background:color-mix(in srgb,var(--a-ink) 8%,transparent);border:0;width:34px;height:34px;border-radius:50%;font-size:15px;color:var(--a-mut)}
+#admin-root .a-mf{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;align-items:center}
+#admin-root .a-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+#admin-root .a-k{text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+#admin-root .a-steps{display:flex;gap:6px}
+#admin-root .a-steps span{flex:1;text-align:center;padding:8px;border-radius:12px;background:var(--a-line);color:var(--a-mut);font-size:13px;font-weight:500}
+#admin-root .a-steps span.on{background:var(--a-grad);color:#fff}
+#admin-root .a-steps span.bad.on{background:var(--a-bad)}
+#admin-root .a-prev{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+#admin-root .a-pv{position:relative}
+#admin-root .a-pv img,#admin-root .a-big{width:80px;height:80px;object-fit:cover;border-radius:14px;display:block}
+#admin-root .a-big{width:124px;height:124px}
+#admin-root .a-pv button{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;border:0;background:var(--a-ink);color:var(--a-card);font-size:11px}
+#admin-root .adm-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--a-ink);color:var(--a-card);padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:80;font-weight:500;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+#admin-root .adm-toast.on{opacity:1}
+#admin-root .adm-toast.err{background:var(--a-bad);color:#fff}
+
+/* ---------- sign-in gate ---------- */
+#admin-root .adm-gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 88% 10%,rgba(255,93,143,.5),transparent 45%),radial-gradient(circle at 0 100%,rgba(124,92,255,.7),transparent 50%),linear-gradient(135deg,#1b1260,#4a2fd6)}
+#admin-root .a-gate{background:var(--a-card);border-radius:28px;padding:34px;width:min(420px,100%);display:flex;flex-direction:column;gap:14px;box-shadow:0 40px 90px rgba(0,0,0,.4)}
+#admin-root .a-gate h2{font-size:28px}
+#admin-root .a-back{text-align:center;color:var(--a-brand);text-decoration:none;font-weight:500}
+
+@media(max-width:900px){
+  #admin-root .adm{grid-template-columns:1fr}
+  #admin-root .adm-side{position:static;height:auto;gap:12px;border-radius:0 0 26px 26px}
+  #admin-root .adm-side nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  #admin-root .adm-side nav button{white-space:nowrap}
+  #admin-root .a-hero{grid-template-columns:1fr;padding:24px}
+  #admin-root .a-stack{display:none}
+  #admin-root .a-g2,#admin-root .a-g2:nth-of-type(n+2){grid-template-columns:1fr}
+  #admin-root .adm-top,#admin-root .adm-body{padding-left:16px;padding-right:16px}
+  #admin-root .a-fg{grid-template-columns:1fr}
+  #admin-root .a-search{min-width:100%}
+}
